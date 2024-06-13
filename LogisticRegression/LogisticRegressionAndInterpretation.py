@@ -46,24 +46,24 @@ X_train, X_test, y_train, y_test = train_test_split(X, y,
                                                     train_size = 0.7,
                                                     stratify = y,
                                                     random_state = 123)
-print('X_train shape:', X_train.shape)
-print('X_test shape:', X_test.shape)
+print('\nX_train shape:', X_train.shape)
+print('\nX_test shape:', X_test.shape)
 
 classifier = LogisticRegression()
 model = classifier.fit(X_train, y_train)
 
-print('Predictions are as follows: \n', model.predict(X_test))
+print('\nModel predictions are as follows: \n', model.predict(X_test))
 print('\nAccuracy of the model is: ',model.score(X_test, y_test))
 print('\nConfusion matrix of the model is as follows:\n', confusion_matrix(y_test, model.predict(X_test)))
 
-print('\n Intercept of model equation: ',model.intercept_)
+print('\nIntercept of model equation: ',model.intercept_)
 #print('\n Coefficients of model equation: ',model.coef_)
 
 log_odds = np.round(model.coef_[0], 2)
-print('\n Log odds: ',log_odds)
+print('\nLog odds: ',log_odds)
 logOdds = pd.DataFrame({'log odds': log_odds}, index = X.columns)
 print('\nFeatures Log coefficients of the model are as follows: \n', logOdds.to_markdown())
 
 odds = np.round(np.exp(log_odds), 2)
 oddsPd = pd.DataFrame({'odds': odds}, index = X.columns)
-print('\n Features Coefficients of the model are as follows: : \n', oddsPd.to_markdown())
+print('\nFeatures Coefficients of the model are as follows: : \n', oddsPd.to_markdown())
